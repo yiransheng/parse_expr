@@ -7,10 +7,7 @@ Supports javaScript binary and unary operators expect for '++' and '--'.
 
 Supports dot and bracket memeber operation. 
 
-
-## Example:
-
-`parse_expr('a+b["x*x+y*y"]') ->`
+`parse_expr('a+b[x*x+y*y]')  ->`
 
 ```
 {
@@ -28,9 +25,34 @@ Supports dot and bracket memeber operation.
       "name": "b"
     },
     "child": {
-      "type": "constant",
-      "value": "x*x+y*y"
+      "type": "binary",
+      "operator": "+",
+      "left": {
+        "type": "binary",
+        "operator": "*",
+        "left": {
+          "type": "identifier",
+          "name": "x"
+        },
+        "right": {
+          "type": "identifier",
+          "name": "x"
+        }
+      },
+      "right": {
+        "type": "binary",
+        "operator": "*",
+        "left": {
+          "type": "identifier",
+          "name": "y"
+        },
+        "right": {
+          "type": "identifier",
+          "name": "y"
+        }
+      }
     }
   }
 }
+
 ```
